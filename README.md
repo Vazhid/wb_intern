@@ -23,7 +23,7 @@ pip install -r requirements.txt
 2. Получите результаты предсказания в файле `results.txt`.
 
 ```bash
-python3 predict.py ../data/wb_school_task_2.csv
+python3 predict.py ../data/filename.csv
 ```
 
 ## Структура проекта
