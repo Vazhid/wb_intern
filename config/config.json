@@ -1,0 +1,5 @@
+{
+    "file_for_preprocessing": "data/wb_school_task_2.csv", 
+    "file_for_training": "data/wb_school_task_2_preproc.csv",
+    "file_for_predict": "new.csv"
+  }

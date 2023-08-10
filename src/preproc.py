@@ -1,6 +1,4 @@
-from catboost import CatBoostClassifier
 import pandas as pd
-import numpy as np
 import re
 from pymorphy2 import MorphAnalyzer
 import json
@@ -32,7 +30,7 @@ def main():
     with open("config/config.json", "r") as jsonfile: # считывание файла конфигурации
         config = json.load(jsonfile)
 
-    df = pd.read_csv(config["file_for_predict"]) # считывание csv-файла для предсказания
+    df = pd.read_csv(config["file_for_preprocessing"]) # считывание csv-файла для обработки
 
     lemmas = list(map(clean_text, df['text'])) # нормализация текста отзывов и запись этих текстов в переменную lemmas
     df['lemmas'] = lemmas # добавление нового признака lemmas в датасет
@@ -44,14 +42,9 @@ def main():
     df["f4/f7"] = df["f4"]/df["f7"]
     df["f3*f6"] = df["f3"]*df["f6"]
 
-    df = df[["f1/f2", "lemmas", "text", "f7/f8", "f6", "f3*f6", "f4/f7", "f1/f7", "f3"]] # оставим в датасете отобранные признаки
+    df = df[["f1/f2", "lemmas", "text", "f7/f8", "f6", "f3*f6", "f4/f7", "f1/f7", "f3", "label"]] # оставим в датасете отобранные признаки
 
-    model = CatBoostClassifier() 
-    model.load_model('../models/model') # загрузка обученное модели
-
-    pred = model.predict(df) # предсказывание
-
-    np.savetxt("../results/results.txt", pred, newline="\n", fmt="%d") # сохранение полученных предсказаний модели
+    df.to_csv("data/wb_school_task_2_preproc.csv") # сохранение датасета, который готов для обучения модели
 
 if __name__ == '__main__':
     main()

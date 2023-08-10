@@ -35,6 +35,20 @@ python3 predict.py ../data/filename.csv
 
 `results/results.txt` - файл с результатами предсказания.
 
+## Полученные результаты
+
+#### Baseline-модель - CatBoostClassifier с параметрами установленными по умолчанию. Метрики:
+- Recall: 0.76
+- Precision: 0.28
+- F1: 0.78
+- Roc Auc: 0.77
+
+#### Итоговая модель - CatBoostClassifier с измененным threshold и подобранными параметрами. Метрики:
+- Recall: 0.47
+- Precision: 0.61
+- F1: 0.72
+- Roc Auc: 0.66
+
 
 ## Автор
 
